@@ -1,0 +1,226 @@
+body {
+    background-color: #0d0d0d;
+    color: #fff;
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+#timer-display {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ff3333;
+    text-shadow: 0 0 5px #ff0000;
+}
+
+#game {
+    background: radial-gradient(circle at center, #1a1a24 0%, #050508 100%);
+    width: 450px;
+    height: 450px;
+    position: relative;
+    overflow: hidden;
+    border: 3px solid #330000;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+}
+
+.fog {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: repeating-radial-gradient(circle, rgba(0,0,0,0.4), rgba(20,0,0,0.8) 70%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.blood-stain {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: rgba(139, 0, 0, 0.6);
+    border-radius: 50%;
+    filter: blur(4px);
+    pointer-events: none;
+}
+
+#ghost, #player {
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    font-size: 35px;
+    line-height: 45px;
+    text-align: center;
+    user-select: none;
+    pointer-events: none;
+    z-index: 1;
+}
+
+#ghost {
+    animation: floatGhost 1.2s ease-in-out infinite alternate;
+    filter: drop-shadow(0 0 8px rgba(255, 0, 0, 0.8));
+}
+
+@keyframes floatGhost {
+    0% {
+        transform: translateY(0px) scale(1);
+    }
+    100% {
+        transform: translateY(-6px) scale(1.08);
+    }
+}
+
+#controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+#controls button {
+    background-color: #222;
+    color: #fff;
+    border: 1px solid #555;
+    padding: 8px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#controls button:active {
+    background-color: #444;
+}
+
+#game-over-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.scary-text {
+    color: #ff0000;
+    font-size: 40px;
+    margin: 0;
+    text-shadow: 0 0 10px #8b0000;
+}
+
+.hidden {
+    display: none !important;
+}
+
+#game { background: #0a0f0a; }
+.ground {
+    position: absolute; inset: 0;
+    background:
+        radial-gradient(ellipse at 50% 50%, rgba(40,60,40,.35), transparent 70%),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.015) 0 2px, transparent 2px 50px),
+        repeating-linear-gradient(0deg, rgba(255,255,255,.015) 0 2px, transparent 2px 50px),
+        #0d140d;
+}
+.moon {
+    position: absolute; top: 8px; right: 14px;
+    width: 38px; height: 38px; border-radius: 50%;
+    background: #e8e8c8;
+    box-shadow: 0 0 30px 12px rgba(220,220,170,.25);
+    z-index: 1; opacity: .8;
+}
+#props { position: absolute; inset: 0; }
+.prop {
+    position: absolute; width: 45px; height: 45px;
+    font-size: 34px; line-height: 45px; text-align: center;
+    filter: drop-shadow(0 4px 4px #000) brightness(.8);
+    pointer-events: none;
+}
+
+.fog {
+    --px: 222px; --py: 222px;
+    background: radial-gradient(circle 120px at var(--px) var(--py),
+        rgba(0,0,0,0) 0%, rgba(0,0,0,.35) 55%, rgba(0,0,0,.95) 100%);
+    z-index: 2;
+}
+.mist {
+    position: absolute; top: 0; left: 0; width: 200%; height: 100%;
+    background:
+        radial-gradient(ellipse 120px 40px at 15% 30%, rgba(180,200,180,.10), transparent),
+        radial-gradient(ellipse 160px 50px at 45% 70%, rgba(180,200,180,.10), transparent),
+        radial-gradient(ellipse 140px 40px at 75% 40%, rgba(180,200,180,.10), transparent);
+    animation: drift 25s linear infinite;
+    pointer-events: none; z-index: 1;
+}
+@keyframes drift { to { transform: translateX(-50%); } }
+.lightning {
+    position: absolute; inset: 0; background: #cfd8ff;
+    opacity: 0; pointer-events: none; z-index: 4;
+}
+.lightning.flash { opacity: .35; }
+#player { z-index: 3; filter: drop-shadow(0 0 6px rgba(255,255,200,.7)); }
+#ghost { z-index: 3; opacity: .85; }
+
+body { background: radial-gradient(circle at 50% 30%, #2a0f3d, #0a0414 80%); }
+#timer-display { color: #ff8c1a; text-shadow: 0 0 8px #ff6a00; letter-spacing: 1px; }
+#game {
+    border: 3px solid #ff7a00;
+    box-shadow: 0 0 25px rgba(255,122,0,.55), inset 0 0 40px rgba(120,0,160,.4);
+    background: #120818;
+}
+.ground {
+    background:
+        radial-gradient(ellipse at 50% 50%, rgba(255,120,0,.12), transparent 65%),
+        repeating-linear-gradient(90deg, rgba(255,160,60,.04) 0 2px, transparent 2px 50px),
+        repeating-linear-gradient(0deg, rgba(255,160,60,.04) 0 2px, transparent 2px 50px),
+        #1a0d22;
+}
+.moon {
+    background: #ff9a2e; opacity: .9;
+    box-shadow: 0 0 40px 16px rgba(255,140,30,.35);
+}
+.blood-stain { background: rgba(255,90,0,.25); }
+.fog {
+    background: radial-gradient(circle 125px at var(--px) var(--py),
+        rgba(255,170,60,.10) 0%, rgba(20,0,30,.4) 55%, rgba(8,0,14,.96) 100%);
+}
+.mist { background:
+        radial-gradient(ellipse 120px 40px at 15% 30%, rgba(170,90,220,.14), transparent),
+        radial-gradient(ellipse 160px 50px at 45% 70%, rgba(170,90,220,.14), transparent),
+        radial-gradient(ellipse 140px 40px at 75% 40%, rgba(170,90,220,.14), transparent); }
+.prop { filter: drop-shadow(0 4px 4px #000); }
+
+.prop:not(.candy) { animation: none; }
+#props .prop { transition: filter .3s; }
+@keyframes flicker { 0%,100%{filter:drop-shadow(0 0 6px #ff7a00) brightness(1.1);}
+                     50%{filter:drop-shadow(0 0 14px #ffb347) brightness(1.4);} }
+#props .prop:nth-child(-n+4), #props .prop:nth-child(12) { animation: flicker 1.4s infinite alternate; }
+.candy { z-index: 2; font-size: 28px; animation: bob .8s ease-in-out infinite alternate;
+         filter: drop-shadow(0 0 8px #ff4fd8) !important; }
+@keyframes bob { to { transform: translateY(-6px) rotate(8deg); } }
+#candies { position: absolute; inset: 0; }
+
+.bat { position: absolute; font-size: 22px; z-index: 3; pointer-events: none; opacity: .8;
+       animation: fly 9s linear infinite; }
+.bat.b1 { top: 12%; animation-duration: 8s; }
+.bat.b2 { top: 55%; animation-duration: 12s; animation-delay: -4s; }
+.bat.b3 { top: 80%; animation-duration: 10s; animation-delay: -7s; }
+@keyframes fly { 0%{ left:-8%; transform: translateY(0);} 50%{transform: translateY(-25px);} 100%{ left:108%; transform: translateY(0);} }
+#ghost { filter: drop-shadow(0 0 10px #b44cff); }
+#controls button { background: #2a1238; border-color: #ff7a00; }
+#controls button:active { background: #ff7a00; }
+#game-over-screen { background: rgba(20,0,30,.9); text-align: center; }
+.scary-text { color: #ff7a00; font-size: 30px; text-shadow: 0 0 14px #ff4d00, 0 0 30px #7a00b8; }
+#game-over-screen button { background: #ff7a00; color: #1a0526; border: none; font-weight: bold;
+    padding: 10px 18px; border-radius: 6px; cursor: pointer; font-family: inherit; }

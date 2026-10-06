@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halloween Night Survival</title>
+    <link rel="stylesheet" href="st12.css">
+</head>
+<body>
+    <div id="game-container">
+        <div id="timer-display">🎃 Survival: <span id="timer">0.0</span>s &nbsp; 🍬 Candy: <span id="candy-count">0</span></div>
+
+        <div id="game">
+            <div class="moon"></div>
+            <div class="bat b1">🦇</div><div class="bat b2">🦇</div><div class="bat b3">🦇</div>
+            <div class="ground"></div>
+            <div class="blood-stain" style="top: 20%; left: 30%;"></div>
+            <div class="blood-stain" style="top: 70%; left: 60%;"></div>
+            <div class="blood-stain" style="top: 45%; left: 8%;"></div>
+            <div id="props"></div>
+            <div id="candies"></div>
+            <div class="mist"></div>
+            <div class="fog" id="fog"></div>
+            <div class="lightning"></div>
+
+            <span id="ghost">👻</span>
+            <span id="player">🏃</span>
+
+            <div id="game-over-screen" class="hidden">
+                <h1 class="scary-text">BOO! YOU'RE DEAD 💀</h1>
+                <p>You survived <span id="final-time">0.0</span>s and collected <span id="final-candy">0</span> candy 🍬</p>
+                <button onclick="restartGame()">Trick or Treat Again 🎃</button>
+            </div>
+        </div>
+
+        <div id="controls">
+            <button id="up" onclick="moveTop()">⬆️</button>
+            <div>
+                <button id="left" onclick="moveLeft()">⬅️</button>
+                <button id="down" onclick="moveDown()">⬇️</button>
+                <button id="right" onclick="moveRight()">➡️</button>
+            </div>
+            <button id="jump" onclick="jump()">JUMP (Space)</button>
+        </div>
+    </div>
+
+    <script src="javaGHEX.js"></script>
+</body>
+</html>
